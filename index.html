@@ -1,0 +1,171 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>TextCity Master - Metin Tabanlı Şehir Kurma Oyunu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <header class="top-bar">
+      <div class="logo">
+        <span class="logo-main">TextCity</span>
+        <span class="logo-sub">Master Edition</span>
+      </div>
+      <div class="top-controls">
+        <button id="btnNewGame" class="btn btn-danger">Yeni Oyun</button>
+        <button id="btnSave" class="btn">Kaydet</button>
+        <button id="btnLoad" class="btn">Yükle</button>
+        <button id="btnReset" class="btn">Sıfırla</button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <!-- SOL SÜTUN: Harita + Tur Kontrolleri -->
+      <section class="panel panel-map">
+        <div class="panel-header">
+          <h2>Şehir Haritası</h2>
+          <div class="turn-info">
+            <span>Gün: <span id="dayDisplay">1</span></span>
+            <span>Mevsim: <span id="seasonDisplay">İlkbahar</span></span>
+            <span>Hava: <span id="weatherDisplay">Güneşli</span></span>
+          </div>
+        </div>
+
+        <div id="mapContainer" class="map-grid">
+          <!-- JS ile doldurulacak -->
+        </div>
+
+        <div class="turn-controls">
+          <button id="btnEndTurn" class="btn btn-primary">Turu Bitir</button>
+          <div class="turn-summary" id="turnSummary">
+            Son Tur: Gelir 0 | Gider 0 | Nüfus Değişimi 0 | Mutluluk Değişimi 0
+          </div>
+        </div>
+      </section>
+
+      <!-- ORTA SÜTUN: Genel İstatistikler + Ekonomi -->
+      <section class="panel panel-stats">
+        <div class="panel-header">
+          <h2>Şehir Durumu</h2>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-label">Nakit</div>
+            <div class="stat-value" id="moneyDisplay">₺ 0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Nüfus</div>
+            <div class="stat-value" id="populationDisplay">0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">İstihdam</div>
+            <div class="stat-value" id="employmentDisplay">0% (işsiz 0)</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Mutluluk</div>
+            <div class="stat-value" id="happinessDisplay">50%</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Çevre</div>
+            <div class="stat-value" id="environmentDisplay">Dengeli</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Trafik</div>
+            <div class="stat-value" id="trafficDisplay">Akıcı</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Enerji</div>
+            <div class="stat-value" id="powerDisplay">Yeterli</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Su</div>
+            <div class="stat-value" id="waterDisplay">Yeterli</div>
+          </div>
+        </div>
+
+        <div class="economy-section">
+          <h3>Ekonomi</h3>
+          <div class="economy-grid">
+            <div class="economy-item">
+              <span>Günlük Vergi Geliri:</span>
+              <span id="taxIncomeDisplay">0</span>
+            </div>
+            <div class="economy-item">
+              <span>Günlük Üretim Geliri:</span>
+              <span id="productionIncomeDisplay">0</span>
+            </div>
+            <div class="economy-item">
+              <span>Günlük Bakım Gideri:</span>
+              <span id="maintenanceCostDisplay">0</span>
+            </div>
+            <div class="economy-item">
+              <span>Toplam Günlük Net:</span>
+              <span id="netIncomeDisplay">0</span>
+            </div>
+          </div>
+
+          <div class="tax-controls">
+            <h4>Vergi Oranları</h4>
+            <div class="tax-row">
+              <label>Konut Vergisi %</label>
+              <input type="range" id="taxResidential" min="1" max="25" value="10">
+              <span id="taxResidentialValue">10</span>
+            </div>
+            <div class="tax-row">
+              <label>Ticari Vergi %</label>
+              <input type="range" id="taxCommercial" min="1" max="30" value="12">
+              <span id="taxCommercialValue">12</span>
+            </div>
+            <div class="tax-row">
+              <label>Sanayi Vergisi %</label>
+              <input type="range" id="taxIndustrial" min="1" max="35" value="15">
+              <span id="taxIndustrialValue">15</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="policies-section">
+          <h3>Politikalar</h3>
+          <div id="policiesContainer" class="policies-grid">
+            <!-- JS ile doldurulacak -->
+          </div>
+        </div>
+
+        <div class="infrastructure-section">
+          <h3>Altyapı ve Özel Binalar</h3>
+          <div id="infrastructureContainer" class="infra-grid">
+            <!-- JS ile doldurulacak -->
+          </div>
+        </div>
+      </section>
+
+      <!-- SAĞ SÜTUN: Seçili Alan + Olay Günlüğü -->
+      <section class="panel panel-details">
+        <div class="panel-header">
+          <h2>Seçili Alan</h2>
+        </div>
+
+        <div id="selectedTileDetails" class="tile-details">
+          Hiçbir kare seçili değil. Haritadan bir kareye tıkla.
+        </div>
+
+        <div class="panel-header log-header">
+          <h2>Olay Günlüğü</h2>
+          <button id="btnClearLog" class="btn btn-ghost">Temizle</button>
+        </div>
+
+        <div id="logContainer" class="log-container">
+          <!-- JS ile doldurulacak -->
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
